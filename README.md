@@ -1,3 +1,11 @@
+# Why does this branch exists?
+
+If you've already tested the original OpenSteamController firmware you'll have surely noticed how sensitive the right trackpad is.
+This branch includes a modification so that the right trackpad doesn't emulate the right joystick unless the right grip is being pressed. When the right grip isn't being pressed the right joystick stays neutral all the time.
+
+Everything else is just the same.
+
+
 # Open Steam Controller
 
 Welcome to the Open Steam Controller Project!
