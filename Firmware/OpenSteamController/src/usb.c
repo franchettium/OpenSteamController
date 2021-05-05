@@ -1340,11 +1340,18 @@ static void updateReports(void) {
 	}
 
 	// Have Right Trackpad act as Right Analog:
-	trackpadGetLastXY(R_TRACKPAD, &tpad_x, &tpad_y);
-	controllerUsbData.statusReport.rightAnalogX = convToPowerAJoyPos(tpad_x, 
-		0, TPAD_MAX_X/2, TPAD_MAX_X);
-	controllerUsbData.statusReport.rightAnalogY = convToPowerAJoyPos(
-		 TPAD_MAX_Y - tpad_y, 0, TPAD_MAX_Y/2, TPAD_MAX_Y);
+	if (getRightGripState()) {
+		trackpadGetLastXY(R_TRACKPAD, &tpad_x, &tpad_y);
+		controllerUsbData.statusReport.rightAnalogX = convToPowerAJoyPos(tpad_x,
+				0, TPAD_MAX_X/2, TPAD_MAX_X);
+			controllerUsbData.statusReport.rightAnalogY = convToPowerAJoyPos(
+				 TPAD_MAX_Y - tpad_y, 0, TPAD_MAX_Y/2, TPAD_MAX_Y);
+	}
+	else{
+		trackpadGetLastXY(R_TRACKPAD, &tpad_x, &tpad_y);
+		controllerUsbData.statusReport.rightAnalogX = 0x80;
+		controllerUsbData.statusReport.rightAnalogY = 0x80;
+	}
 }
 
 /**
